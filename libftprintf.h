@@ -6,7 +6,7 @@
 /*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:56:41 by tzeck             #+#    #+#             */
-/*   Updated: 2021/08/19 12:01:10 by tzeck            ###   ########.fr       */
+/*   Updated: 2021/08/19 19:21:21 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include<stdlib.h>
 # include<unistd.h>
 # include"libft/libft.h"
-# include <stdio.h>
 
 typedef struct s_flags
 {
