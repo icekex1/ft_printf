@@ -6,13 +6,13 @@
 /*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 16:54:15 by tzeck             #+#    #+#             */
-/*   Updated: 2021/07/14 17:24:55 by tzeck            ###   ########.fr       */
+/*   Updated: 2021/08/19 14:32:33 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(long n, int fd)
 {
 	if (n == 0)
 		ft_putchar_fd('0', fd);

@@ -6,7 +6,7 @@
 /*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 12:00:17 by tzeck             #+#    #+#             */
-/*   Updated: 2021/08/19 12:20:25 by tzeck            ###   ########.fr       */
+/*   Updated: 2021/08/19 14:32:39 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*ft_itoa(int n);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
+void	ft_putnbr_fd(long n, int fd);
 void	ft_puthexa(unsigned long n);
 void	ft_putheXa(unsigned long n);
 

@@ -6,7 +6,7 @@
 /*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:56:51 by tzeck             #+#    #+#             */
-/*   Updated: 2021/08/19 11:56:54 by tzeck            ###   ########.fr       */
+/*   Updated: 2021/08/19 15:35:13 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	print_u_right(t_flags chart, int counter, long n)
 {
 	if (chart.min_field_width > 0)
 	{
+		if (n == 0 && chart.precision == 0)
+			chart.min_field_width++;
 		if (chart.zero == 1 && n < 0 && chart.dot == 0)
 		{
 			chart.min_field_width--;
@@ -53,6 +55,6 @@ int	print_u_left(t_flags chart, va_list parameters)
 			counter += mfw(chart, d_length(n), n, ' ');
 	}
 	else
-		counter += print_d_right(chart, counter, n);
+		counter += print_u_right(chart, counter, n);
 	return (counter);
 }
