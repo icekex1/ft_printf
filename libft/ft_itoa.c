@@ -3,60 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschleic <rschleic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/20 16:02:10 by rschleic          #+#    #+#             */
-/*   Updated: 2021/07/21 22:34:31 by rschleic         ###   ########.fr       */
+/*   Created: 2021/07/13 16:57:19 by tzeck             #+#    #+#             */
+/*   Updated: 2021/07/21 18:48:53 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_count(long n)
+static size_t	digit_count(int n)
 {
-	long	counter;
+	size_t	l;
 
-	counter = 0;
+	l = 0;
 	if (n == 0)
 		return (1);
 	if (n < 0)
-	{
-		n *= -1;
-		counter++;
-	}
-	while (n > 0)
+		l++;
+	while (n)
 	{
 		n /= 10;
-		counter++;
+		l++;
 	}
-	return (counter);
+	return (l);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*str;
-	size_t	i;
-	size_t	end;
-	long	number;
+	int		len;
+	long	num;
+	char	*s;
 
-	i = 0;
-	end = ft_count(n);
-	number = n;
-	str = ft_calloc((ft_count(number) + 1), sizeof(char));
-	if (str == NULL)
+	num = n;
+	len = digit_count(num);
+	s = malloc(sizeof(char) * len + 1);
+	if (s == NULL)
 		return (NULL);
-	if (number < 0)
+	if (num < 0)
 	{
-		str[0] = '-';
-		i++;
+		s[0] = '-';
+		num *= (-1);
 	}
-	while (i < end)
+	if (num == 0)
+		s[0] = '0';
+	s[len--] = '\0';
+	while (num)
 	{
-		if (number < 0)
-			number *= -1;
-		str[end - 1] = number % 10 + 48;
-		number /= 10;
-		end--;
+		s[len] = num % 10 + '0';
+		len--;
+		num /= 10;
 	}
-	return (str);
+	return (s);
 }

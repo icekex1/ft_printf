@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_write_hexa.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschleic <rschleic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/09 11:41:03 by rschleic          #+#    #+#             */
-/*   Updated: 2021/08/18 09:42:16 by rschleic         ###   ########.fr       */
+/*   Created: 2021/08/19 11:57:17 by tzeck             #+#    #+#             */
+/*   Updated: 2021/08/19 11:57:19 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_hexa_length(unsigned long n)
+int	x_length(unsigned long n)
 {
 	int	length;
 
@@ -27,10 +27,12 @@ int	ft_hexa_length(unsigned long n)
 	return (length);
 }
 
-void	ft_zero_case(long n, int b)
+void	zero_case(long n, int b, t_flags chart)
 {
-	if (n == 0)
+	if (n == 0 && (chart.precision > 0 || !chart.dot))
 		ft_putchar_fd('0', 1);
+	if (chart.min_field_width && chart.dot && chart.precision <= 0)
+		ft_putchar_fd(' ', 1);
 	else
 	{
 		if (b == 0)
@@ -40,31 +42,31 @@ void	ft_zero_case(long n, int b)
 	}
 }
 
-int	ft_print_hex_right(t_flags chart, int counter, long n, int b)
+int	print_x_right(t_flags chart, int counter, long n, int b)
 {
 	if (chart.min_field_width > 0)
 	{
 		if (chart.zero == 1 && chart.hashtag && chart.dot == 0)
 		{
 			chart.min_field_width -= 2;
-			counter += ft_hashtag(b);
+			counter += hashtag(b);
 		}
 		else if (chart.hashtag)
 			chart.min_field_width -= 2;
 		if (chart.zero == 1 && chart.dot == 0)
-			counter += ft_min_field_width(chart, ft_hexa_length(n), n, '0');
+			counter += mfw(chart, x_length(n), n, '0');
 		else
-			counter += ft_min_field_width(chart, ft_hexa_length(n), n, ' ');
+			counter += mfw(chart, x_length(n), n, ' ');
 	}
 	if (chart.hashtag && !chart.zero && n != 0)
-		counter += ft_hashtag(b);
-	counter += ft_precision(chart, ft_hexa_length(n));
-	ft_zero_case(n, b);
-	counter += ft_hexa_length(n);
+		counter += hashtag(b);
+	counter += precision(chart, x_length(n));
+	zero_case(n, b, chart);
+	counter += x_length(n);
 	return (counter);
 }
 
-int	ft_print_hex_left(t_flags chart, va_list parameters, int b)
+int	print_x_left(t_flags chart, va_list parameters, int b)
 {
 	unsigned long	n;
 	int				counter;
@@ -74,15 +76,17 @@ int	ft_print_hex_left(t_flags chart, va_list parameters, int b)
 	if (chart.minus == 1)
 	{
 		if (chart.hashtag && n != 0)
-			counter += ft_hashtag(b);
-		if (chart.dot)
-			counter += ft_precision(chart, ft_hexa_length(n) - 1);
-		ft_zero_case(n, b);
-		counter += ft_hexa_length(n);
+			counter += hashtag(b);
+		if (chart.dot && chart.min_field_width && chart.precision)
+			counter += precision(chart, x_length(n));
+		else if (chart.dot)
+			counter += precision(chart, x_length(n) - 1);
+		zero_case(n, b, chart);
+		counter += x_length(n);
 		if (chart.min_field_width > 0)
-			counter += ft_min_field_width(chart, ft_hexa_length(n), n, ' ');
+			counter += mfw(chart, x_length(n), n, ' ');
 	}
 	else
-		counter += ft_print_hex_right(chart, counter, n, b);
+		counter += print_x_right(chart, counter, n, b);
 	return (counter);
 }

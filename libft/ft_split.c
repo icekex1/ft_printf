@@ -3,60 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschleic <rschleic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/18 10:39:46 by rschleic          #+#    #+#             */
-/*   Updated: 2021/07/23 09:41:02 by rschleic         ###   ########.fr       */
+/*   Created: 2021/07/23 17:01:43 by tzeck             #+#    #+#             */
+/*   Updated: 2021/07/23 17:14:41 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
-size_t	ft_ptr_quantity(char const *s, char c);
-
-char	**ft_split(char const *s, char c)
+static int	delimiter(const char *s, char c, int i)
 {
-	char	**ptrptr;
-	size_t	index;
-	size_t	start;
-	size_t	end;
-
-	index = 0;
-	start = 0;
-	if (s == NULL)
-		return (NULL);
-	ptrptr = malloc((ft_ptr_quantity(s, c) + 1) * sizeof(char *));
-	if (ptrptr == NULL)
-		return (NULL);
-	while (index != ft_ptr_quantity(s, c))
-	{
-		while (s[start] != '\0' && s[start] == c)
-			start++;
-		end = start;
-		while (s[end] != '\0' && s[end] != c)
-			end++;
-		ptrptr[index] = ft_substr(s, start, (end - start));
-		start = end;
-		index++;
-	}
-	ptrptr[index] = NULL;
-	return (ptrptr);
+	while (s[i] != c && s[i])
+		i++;
+	return (i);
 }
 
-size_t	ft_ptr_quantity(char const *s, char c)
+static int	string_count(const char *s, char c)
 {
-	size_t	counter;
-	size_t	quantity;
+	int	str_nbr;
+	int	i;
 
-	counter = 0;
-	quantity = 0;
-	if (s[0] == '\0')
+	if (!s[0])
 		return (0);
-	while (s[counter] != '\0')
+	str_nbr = 0;
+	i = 0;
+	while (s[i] && s[i] == c)
+		i++;
+	while (s[i])
 	{
-		if (s[counter] != c && (s[counter + 1] == c || s[counter + 1] == '\0'))
-			quantity++;
-		counter++;
+		if (s[i] == c)
+		{
+			str_nbr++;
+			while (s[i] && s[i] == c)
+				i++;
+			continue ;
+		}
+		i++;
 	}
-	return (quantity);
+	if (s[i - 1] != c)
+		str_nbr++;
+	return (str_nbr);
+}
+
+static void	write_words(const char *s, char c, char **mainstr, unsigned int b)
+{
+	unsigned int	a;
+	unsigned int	i;
+	size_t			z;
+
+	i = 0;
+	a = 0;
+	z = 0;
+	while (a < b)
+	{
+		i = z + i;
+		while (s[i] && s[i] == c)
+			i++;
+		z = delimiter(s, c, i) - i;
+		mainstr[a] = (char *)ft_substr(s, i, z);
+		a++;
+	}
+	mainstr[a] = NULL;
+}
+
+char	**ft_split(const char *s, char c)
+{
+	char			**mainstr;
+	unsigned int	b;
+
+	if (!s)
+		return (0);
+	b = string_count(s, c);
+	mainstr = (char **)malloc(b * sizeof(char *) + 1 * sizeof(char *));
+	if (mainstr == '\0')
+		return (0);
+	write_words(s, c, mainstr, b);
+	return (mainstr);
 }

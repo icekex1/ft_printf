@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memcmp.c                                           :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschleic <rschleic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/19 15:11:54 by rschleic          #+#    #+#             */
-/*   Updated: 2021/07/07 12:45:11 by rschleic         ###   ########.fr       */
+/*   Created: 2021/07/09 16:04:15 by tzeck             #+#    #+#             */
+/*   Updated: 2021/07/22 18:55:37 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t			counter;
-	unsigned char	a;
-	unsigned char	b;
+	unsigned char	*b1;
+	unsigned char	*b2;
+	size_t			i;
 
-	counter = 0;
-	while (1)
+	b1 = (unsigned char *)s1;
+	b2 = (unsigned char *)s2;
+	i = 0;
+	while (i < n)
 	{
-		if (counter == n)
-		{
-			return (0);
-		}
-		if (((unsigned char *) s1)[counter] != ((unsigned char *) s2)[counter])
-		{
-			a = ((unsigned char *) s1)[counter];
-			b = ((unsigned char *) s2)[counter];
-			return (a - b);
-		}
-		counter++;
+		if (b1[i] != b2[i])
+			return (b1[i] - b2[i]);
+		i++;
 	}
+	return (0);
 }

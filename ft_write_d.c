@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_write_i_d.c                                     :+:      :+:    :+:   */
+/*   ft_write_d.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschleic <rschleic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/06 17:18:02 by rschleic          #+#    #+#             */
-/*   Updated: 2021/08/18 11:32:25 by rschleic         ###   ########.fr       */
+/*   Created: 2021/08/19 11:57:26 by tzeck             #+#    #+#             */
+/*   Updated: 2021/08/19 11:58:53 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libftprintf.h"
 
-int	ft_i_d_length(long n)
+int	d_length(long n)
 {
 	int	length;
 
@@ -40,35 +40,51 @@ int	negative_number(long *n, int counter)
 	return (counter);
 }
 
-int	ft_print_d_i_right(t_flags chart, int counter, long n)
+int	print_nothing(t_flags chart, long n)
+{
+	int	counter;
+
+	counter = 0;
+	if (chart.precision == 0 && n == 0)
+		return (counter);
+	else
+	{
+		ft_putnbr_fd(n, 1);
+		counter += d_length(n);
+	}
+	return (counter);
+}
+
+int	print_d_right(t_flags chart, int counter, long n)
 {
 	if (chart.min_field_width > 0)
 	{
+		if (n == 0 && chart.precision == 0)
+			chart.min_field_width++;
 		if (chart.zero == 1 && n < 0 && chart.dot == 0)
 		{
 			counter = negative_number(&n, counter);
 			chart.min_field_width--;
 		}
 		if (chart.zero == 1 && chart.dot == 0)
-			counter += ft_min_field_width(chart, ft_i_d_length(n), n, '0');
+			counter += mfw(chart, d_length(n), n, '0');
 		else
-			counter += ft_min_field_width(chart, ft_i_d_length(n), n, ' ');
+			counter += mfw(chart, d_length(n), n, ' ');
 	}
 	if (chart.plus || chart.space)
-		counter += ft_plus_space(chart, n);
+		counter += plus_space(chart, n);
 	if (n < 0)
 	{
 		ft_putchar_fd('-', 1);
 		counter++;
 		n *= -1;
 	}
-	counter += ft_precision(chart, ft_i_d_length(n));
-	ft_putnbr_fd(n, 1);
-	counter += ft_i_d_length(n);
+	counter += precision(chart, d_length(n));
+	counter += print_nothing(chart, n);
 	return (counter);
 }
 
-int	ft_print_d_i_left(t_flags chart, va_list parameters)
+int	print_d_left(t_flags chart, va_list parameters)
 {
 	long	n;
 	int		counter;
@@ -83,15 +99,16 @@ int	ft_print_d_i_left(t_flags chart, va_list parameters)
 			chart.min_field_width--;
 		}
 		if (chart.plus || chart.space)
-			counter += ft_plus_space(chart, n);
+			counter += plus_space(chart, n);
 		if (chart.dot)
-			counter += ft_precision(chart, ft_i_d_length(n));
-		ft_putnbr_fd(n, 1);
-		counter += ft_i_d_length(n);
+			counter += precision(chart, d_length(n));
+		counter += print_nothing(chart, n);
+		if (n == 0 && chart.precision == 0)
+			chart.min_field_width++;
 		if (chart.min_field_width > 0)
-			counter += ft_min_field_width(chart, ft_i_d_length(n), n, ' ');
+			counter += mfw(chart, d_length(n), n, ' ');
 	}
 	else
-		counter = ft_print_d_i_right(chart, counter, n);
+		counter = print_d_right(chart, counter, n);
 	 return (counter);
 }

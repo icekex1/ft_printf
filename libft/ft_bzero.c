@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bzero.c                                            :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschleic <rschleic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/15 16:45:51 by rschleic          #+#    #+#             */
-/*   Updated: 2021/07/07 11:56:41 by rschleic         ###   ########.fr       */
+/*   Created: 2021/07/06 11:20:33 by tzeck             #+#    #+#             */
+/*   Updated: 2021/07/21 18:32:05 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t	counter;
+	unsigned char	*p;
 
-	counter = 0;
-	while (counter < n)
+	p = (unsigned char *)s;
+	while (n > 0)
 	{
-		((char *)s)[counter] = '\0';
-		counter++;
+		*p = '\0';
+		p++;
+		n--;
 	}
 }

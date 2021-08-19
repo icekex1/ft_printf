@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschleic <rschleic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/22 17:23:25 by rschleic          #+#    #+#             */
-/*   Updated: 2021/08/04 12:50:42 by rschleic         ###   ########.fr       */
+/*   Created: 2021/07/08 19:32:42 by tzeck             #+#    #+#             */
+/*   Updated: 2021/07/21 18:33:45 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,19 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s != '\0')
+	int		i;
+	char	*ptr;
+
+	i = 0;
+	ptr = (char *)s;
+	while (s[i])
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
+		if (s[i] == c)
+			return (&ptr[i]);
+		i++;
 	}
-	if ((char) c == '\0')
-		return ((char *)s);
-	return (NULL);
+	if (c == '\0')
+		return (&ptr[i]);
+	else
+		return (NULL);
 }

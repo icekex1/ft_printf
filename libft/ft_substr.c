@@ -3,36 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschleic <rschleic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/14 18:16:07 by rschleic          #+#    #+#             */
-/*   Updated: 2021/08/13 14:26:06 by rschleic         ###   ########.fr       */
+/*   Created: 2021/07/10 17:22:24 by tzeck             #+#    #+#             */
+/*   Updated: 2021/07/21 18:37:14 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
-char	*ft_substr(char	const *s, unsigned	int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*subs;
-	size_t	counter;
+	char	*p;
+	size_t	i;
+	size_t	z;
 
-	counter = 0;
-	if (s == NULL)
+	i = 0;
+	p = malloc((len + 1) * sizeof(char));
+	if (s == NULL || p == NULL)
 		return (NULL);
-	subs = malloc((len + 1) * sizeof(char));
-	if (subs == NULL)
+	z = ft_strlen(s);
+	if (start >= z)
 	{
-		free(subs);
-		return (NULL);
+		p[i] = '\0';
+		return (p);
 	}
-	if (start >= ft_strlen(s))
+	while (i < len && s[start] != '\0')
 	{
-		subs[0] = '\0';
-		return (subs);
+		p[i] = s[start];
+		start++;
+		i++;
 	}
-	while (counter < len)
-		subs[counter++] = s[start++];
-	subs[counter] = '\0';
-	return (subs);
+	p[i] = '\0';
+	return (p);
 }

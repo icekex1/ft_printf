@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fun_with_flags.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschleic <rschleic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/06 20:16:00 by rschleic          #+#    #+#             */
-/*   Updated: 2021/08/17 22:11:39 by rschleic         ###   ########.fr       */
+/*   Created: 2021/08/19 11:58:03 by tzeck             #+#    #+#             */
+/*   Updated: 2021/08/19 11:58:05 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libftprintf.h"
 
-int	ft_plus_space(t_flags chart, long n)
+int	plus_space(t_flags chart, long n)
 {
 	int	counter;
 
@@ -30,7 +30,7 @@ int	ft_plus_space(t_flags chart, long n)
 	return (counter);
 }
 
-int	ft_precision(t_flags chart, int length)
+int	precision(t_flags chart, int length)
 {
 	int	x;
 	int	counter;
@@ -46,7 +46,7 @@ int	ft_precision(t_flags chart, int length)
 	return (counter);
 }
 
-int	ft_hashtag(int b)
+int	hashtag(int b)
 {
 	if (b == 0)
 	{

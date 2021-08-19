@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memchr.c                                           :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschleic <rschleic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/18 20:22:01 by rschleic          #+#    #+#             */
-/*   Updated: 2021/07/07 12:24:55 by rschleic         ###   ########.fr       */
+/*   Created: 2021/07/09 15:46:33 by tzeck             #+#    #+#             */
+/*   Updated: 2021/07/21 18:33:48 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	counter;
+	char	*p;
 
-	counter = 0;
-	while (counter < n && ((unsigned char *)s)[counter] != ((unsigned char) c))
+	p = (char *)s;
+	while (n > 0)
 	{
-		counter++;
+		if (*p == c)
+			return (p);
+		p++;
+		n--;
 	}
-	if (counter == n)
-	{
-		return (NULL);
-	}
-	return (((void *)(s + counter)));
+	return (NULL);
 }

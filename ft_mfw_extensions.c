@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mfw_extensions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschleic <rschleic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/08 19:25:23 by rschleic          #+#    #+#             */
-/*   Updated: 2021/08/17 22:14:15 by rschleic         ###   ########.fr       */
+/*   Created: 2021/08/19 11:57:56 by tzeck             #+#    #+#             */
+/*   Updated: 2021/08/19 11:57:58 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libftprintf.h"
 
-int	ft_min_field_width(t_flags chart, int length, long n, char zero)
+int	mfw(t_flags chart, int length, long n, char zero)
 {
 	int	x;
 	int	counter;
@@ -33,14 +33,14 @@ int	ft_min_field_width(t_flags chart, int length, long n, char zero)
 		}
 	}
 	else if (chart.min_field_width > length && chart.dot == 0)
-		counter = ft_mfw_2(x, chart, length, zero);
+		counter = mfw_2(x, chart, length, zero);
 	else if (chart.min_field_width > chart.precision
 		&& chart.min_field_width > length)
-		counter = ft_mfw_3(x, chart, length, zero);
+		counter = mfw_3(x, chart, length, zero);
 	return (counter);
 }
 
-int	ft_mfw_2(int x, t_flags chart, int length, char zero)
+int	mfw_2(int x, t_flags chart, int length, char zero)
 {
 	int	counter;
 
@@ -55,12 +55,11 @@ int	ft_mfw_2(int x, t_flags chart, int length, char zero)
 	return (counter);
 }
 
-int	ft_mfw_3(int x, t_flags chart, int length, char zero)
+int	mfw_3(int x, t_flags chart, int length, char zero)
 {
 	int	counter;
 
 	counter = 0;
-	chart.min_field_width--;
 	x = chart.min_field_width - length;
 	while (x > 0)
 	{

@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memmove.c                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschleic <rschleic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/19 17:23:51 by rschleic          #+#    #+#             */
-/*   Updated: 2021/07/07 13:08:36 by rschleic         ###   ########.fr       */
+/*   Created: 2021/07/09 16:21:38 by tzeck             #+#    #+#             */
+/*   Updated: 2021/07/09 17:11:54 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dst, const void *src, size_t n)
 {
+	size_t	i;
+
+	if (!dst && !src)
+		return (NULL);
 	if (src < dst)
 	{
-		while (len > 0)
+		i = n;
+		while (i > 0)
 		{
-			((char *) dst)[len - 1] = ((char *) src)[len - 1];
-			len--;
+			i--;
+			((char *)dst)[i] = ((char *)src)[i];
 		}
-		return (dst);
 	}
-	return (ft_memcpy(dst, src, len));
+	else
+	{
+		i = 0;
+		while (i < n)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
+			i++;
+		}
+	}
+	return (dst);
 }

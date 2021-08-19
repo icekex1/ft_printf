@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschleic <rschleic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 13:48:34 by rschleic          #+#    #+#             */
-/*   Updated: 2021/07/08 21:32:14 by rschleic         ###   ########.fr       */
+/*   Created: 2021/07/06 18:20:27 by tzeck             #+#    #+#             */
+/*   Updated: 2021/07/21 18:32:00 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,26 @@
 
 int	ft_atoi(const char *str)
 {
-	int		counter;
-	long	output;
-	int		sign;
+	int	i;
+	int	re;
+	int	sign;
 
-	counter = 0;
-	output = 0;
+	i = 0;
 	sign = 1;
-	while (str[counter] == 32 || (str[counter] <= 13 && str[counter] >= 9))
-		counter++;
-	if (str[counter] == '-')
+	re = 0;
+	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\r'
+		|| str[i] == '\v' || str[i] == '\f' || str[i] == ' ')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		sign = -1;
-		counter++;
+		if (str[i] == '-')
+			sign = -1;
+		i++;
 	}
-	else if (str[counter] == '+')
-		counter++;
-	while (str[counter] >= '0' && str[counter] <= '9')
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		output = output * 10 + str[counter++] - '0';
-		if (sign == -1 && output > (long) INT_MAX + 1)
-			return (0);
-		else if (sign == 1 && output > INT_MAX)
-			return (-1);
+		re = re * 10 + str[i] - '0';
+		i++;
 	}
-	return (sign * output);
+	return (re * sign);
 }

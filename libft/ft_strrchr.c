@@ -3,27 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschleic <rschleic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/25 15:00:29 by rschleic          #+#    #+#             */
-/*   Updated: 2021/07/27 18:42:38 by rschleic         ###   ########.fr       */
+/*   Created: 2021/07/07 18:26:53 by tzeck             #+#    #+#             */
+/*   Updated: 2021/07/21 18:34:31 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	counter;
+	int		i;
+	int		b;
+	char	*ptr;
 
-	counter = 0;
-	while (s[counter] != '\0')
-		counter++;
-	if (s[counter] == (char)c)
-		return ((char *)&s[counter]);
-	while (s[counter] != (char)c && counter > 0)
-		counter--;
-	if (s[counter] == (char)c)
-		return ((char *)&s[counter]);
-	return (NULL);
+	i = 0;
+	b = -1;
+	ptr = (char *)s;
+	while (s[i])
+	{
+		if (s[i] == c)
+			b = i;
+		i++;
+	}
+	if (b != -1)
+		return (&ptr[b]);
+	else if (c == '\0')
+		return (&ptr[i]);
+	else
+		return (NULL);
 }

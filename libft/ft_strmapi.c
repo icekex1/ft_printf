@@ -3,31 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschleic <rschleic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/17 15:41:12 by rschleic          #+#    #+#             */
-/*   Updated: 2021/07/21 22:33:03 by rschleic         ###   ########.fr       */
+/*   Created: 2021/07/13 19:50:57 by tzeck             #+#    #+#             */
+/*   Updated: 2021/07/13 20:54:14 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*mapi;
-	size_t	counter;
+	size_t	i;
+	size_t	l;
+	char	*p;
 
-	counter = 0;
-	if (s == NULL || f == NULL)
+	if (!s || !f)
 		return (NULL);
-	mapi = malloc((ft_strlen(s) + 1) * sizeof(char));
-	if (mapi == NULL)
+	l = ft_strlen(s);
+	p = (char *)malloc((l + 1) * sizeof(char));
+	if (p == NULL)
 		return (NULL);
-	while (s[counter] != '\0')
+	i = 0;
+	while (i < l)
 	{
-		mapi[counter] = f(counter, s[counter]);
-		counter++;
+		p[i] = f(i, s[i]);
+		i++;
 	}
-	mapi[counter] = '\0';
-	return (mapi);
+	p[i] = '\0';
+	return (p);
 }

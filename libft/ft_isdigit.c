@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isdigit.c                                          :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschleic <rschleic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/24 16:45:37 by rschleic          #+#    #+#             */
-/*   Updated: 2021/07/07 12:01:44 by rschleic         ###   ########.fr       */
+/*   Created: 2021/07/06 18:00:47 by tzeck             #+#    #+#             */
+/*   Updated: 2021/07/19 21:37:04 by tzeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 int	ft_isdigit(int c)
 {
-	if (c > 47 && c < 58)
-		return (1);
-	else
+	if (c < 48 || c > 57)
 		return (0);
+	else
+		return (1);
 }

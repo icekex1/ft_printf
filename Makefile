@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rschleic <rschleic@student.42.fr>          +#+  +:+       +#+         #
+#    By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/08/12 20:53:58 by rschleic          #+#    #+#              #
-#    Updated: 2021/08/18 11:36:45 by rschleic         ###   ########.fr        #
+#    Created: 2021/08/19 11:56:34 by tzeck             #+#    #+#              #
+#    Updated: 2021/08/19 12:00:22 by tzeck            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 COMPILER = gcc
 CFLAGS = -Wall -Wextra -Werror -c
-SRC = ft_fun_with_flags.c ft_mfw_extensions.c ft_printf.c \
-ft_write_chars.c ft_write_hexa.c ft_write_i_d.c ft_write_u.c ft_write_pointer.c ft_write_s.c 
+SRC = ft_flags.c ft_mfw_extensions.c ft_printf.c \
+ft_write_chars.c ft_write_hexa.c ft_write_d.c ft_write_u.c ft_write_pointer.c ft_write_s.c 
 
 all: $(NAME)
 
@@ -38,3 +38,5 @@ fclean: clean
 re: fclean all
 
 bonus: all
+
+.PHONY: all clean fclean re
