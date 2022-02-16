@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 12:00:17 by tzeck             #+#    #+#             */
-/*   Updated: 2021/08/19 19:22:23 by tzeck            ###   ########.fr       */
+/*   Updated: 2022/02/16 16:48:11 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ char	*ft_itoa(int n);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
-void	ft_putnbr_fd(long n, int fd);
-void	ft_puthexa(unsigned long n);
-void	ft_putheXa(unsigned long n);
+void	ft_putnbr_fd(int n, int fd);
+void	ft_puthexa(unsigned int n);
+void	ft_putheXa(unsigned int n);
 
 #endif

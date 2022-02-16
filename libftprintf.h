@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tzeck <tzeck@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:56:41 by tzeck             #+#    #+#             */
-/*   Updated: 2021/08/19 19:21:21 by tzeck            ###   ########.fr       */
+/*   Updated: 2022/02/16 16:40:16 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFTPRINTF_H
 # define LIBFTPRINTF_H
 
-# include<stdarg.h>
-# include<stdlib.h>
-# include<unistd.h>
-# include"libft/libft.h"
+# include <stdarg.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include "libft/libft.h"
 
 typedef struct s_flags
 {
