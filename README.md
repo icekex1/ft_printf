@@ -15,13 +15,13 @@ implemented conversions:
 • %% Prints a percent sign. 
 
 implemented flags: 
-• -                     Left justify the output within the specified field.
-• 0                     Pad a field with leading zeros.
-• .                     Precision.
-• field minimum width   The converted argument will be printed in a field at least this wide, and wider if necessary.
-• #                     Prefix 0 to the output value when used with the octal conversion character o.
-• space                 Print a space before a positive value not printed with the + flag.
-• +                     Display a plus sign preceding positive values and a minus sign preceding negative values.
+• -                     Left justify the output within the specified field.  
+• 0                     Pad a field with leading zeros.  
+• .                     Precision.  
+• field minimum width   The converted argument will be printed in a field at least this wide, and wider if necessary.  
+• #                     Prefix 0 to the output value when used with the octal conversion character o.  
+• space                 Print a space before a positive value not printed with the + flag.  
+• +                     Display a plus sign preceding positive values and a minus sign preceding negative values.  
 ## Usage
 
 ``make`` without bonus functions.
